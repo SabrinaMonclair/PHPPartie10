@@ -3,10 +3,8 @@
     $nameRegex =  '/^[a-zA-Z_çzáàâãéèêíïóôõöúñ-]{3,15}$/';
     $mailRegex =  '/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/';
     $ageRegex = '/^[0-9]{1,2}$/';
-
-
     $error = array();
-    var_dump($_POST);
+    
 
     if (isset($_POST['lastname'])) {
         if (!preg_match($nameRegex, $_POST['lastname'])) {
@@ -84,6 +82,7 @@
                      <option>Madame</option>
                      <option>Monsieur</option>
                  </select>
+                 <span class="text-danger"><?= isset($error['gender']) ? $error['gender'] : '' ?></span>
              </div>
              <div class="form-group">
                  <label for="lastname">Nom</label>
@@ -112,6 +111,7 @@
 
         <div>
              <p>Vous avez bien été enregistré !</p>
+             <p>Civilité : <?= htmlspecialchars($_POST['gender']) ?></p>
              <p>NOM : <?= htmlspecialchars($_POST['lastname']) ?></p>
              <p>Prénom : <?= htmlspecialchars($_POST['firstname']) ?></p>
              <p>Votre Age : <?= htmlspecialchars($_POST['age']) ?></p>
